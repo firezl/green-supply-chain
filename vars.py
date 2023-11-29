@@ -116,3 +116,7 @@ head = {
 }
 base_url1 = "https://www.ipe.org.cn/GreenSupplyChain/CITIDetailV2.aspx?id="
 base_url2 = "https://www.ipe.org.cn/MapSCMBrand/BrandDetail.aspx?id="
+
+base_url3 = "https://stock-data.nbd.com.cn/api/1/esg/companies/info?code="
+
+head
