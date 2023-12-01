@@ -110,6 +110,25 @@ meaning_dict = {
     "Band_25": "范围1+2 自身减排行动 开展能源监测和管理项目",
     "Band_26": "范围1+2 自身减排行动 通过碳抵消机制减排，并披露项目减排量",
     "Band_27": "范围1+2 自身减排行动 推动其自有工厂、下属子公司、门店等披露碳排放数据，且/或设定减排目标",
+    "Environment": "中诚信绿金-环境",
+    "Social": "中诚信绿金-社会",
+    "Governance": "中诚信绿金-治理",
+    "ESG_ccxgf": "中诚信绿金-ESG-web",
+    "ESG_iigf": "中财绿金院-ESG-web",
+    "ESG_iigf_sf": "中财绿金院-ESG-新浪财经",
+    "ESG_syntaogf": "商道融绿-ESG",
+    "ESG_susallwave": "盟浪-ESG",
+    "ESG_ccxi": "中诚信绿金-ESG-新浪财经",
+    "ESG_sustainalytics": "晨星Sustainalytics-ESG",
+    "ESG_miotech": "妙盈金融-ESG",
+    "ESG_cit": "华测CTI-ESG",
+    "CEmissReduce": "碳排放量减少",
+    "CEmission": "碳排放量",
+    "SC_CC": "客户集中度",
+    "SC_PC": "供应商集中度",
+    "SC_CCHHI": "客户集中度赫芬达尔指数",
+    "SC_PCHHI": "供应商集中度赫芬达尔指数",
+    "SC_SCC": "供应链集中度"
 }
 head = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0"
