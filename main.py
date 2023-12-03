@@ -37,8 +37,3 @@ message = ProtocolMessage(
 )
 messages.append(message)
 asyncio.run(get_responses(api_key, messages))
-
-# For Python 3.6 and older, you would typically do the following:
-# loop = asyncio.get_event_loop()
-# loop.run_until_complete(get_responses(api_key))
-# loop.close()

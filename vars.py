@@ -128,7 +128,7 @@ meaning_dict = {
     "SC_PC": "供应商集中度",
     "SC_CCHHI": "客户集中度赫芬达尔指数",
     "SC_PCHHI": "供应商集中度赫芬达尔指数",
-    "SC_SCC": "供应链集中度"
+    "SC_SCC": "供应链集中度",
 }
 head = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0"
@@ -137,5 +137,3 @@ base_url1 = "https://www.ipe.org.cn/GreenSupplyChain/CITIDetailV2.aspx?id="
 base_url2 = "https://www.ipe.org.cn/MapSCMBrand/BrandDetail.aspx?id="
 
 base_url3 = "https://stock-data.nbd.com.cn/api/1/esg/companies/info?code="
-
-head
