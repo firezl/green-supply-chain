@@ -23,7 +23,6 @@ class Conversation(object):
             ):
                 data = partial.text
                 response += data
-            print("")
             return response
 
         return get_responses(self.api_key, self.messages)

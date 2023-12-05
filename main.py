@@ -1,39 +1,76 @@
-import asyncio
-from fastapi_poe.types import ProtocolMessage
-from fastapi_poe.client import get_bot_response
-import json
-
-
-# Create an asynchronous function to encapsulate the async for loop
-async def get_responses(api_key, messages):
-    response = ""
-    async for partial in get_bot_response(
-        messages=messages, bot_name="ChatGPT", api_key=api_key
-    ):
-        data = partial.text
-        print(data, end="")
-        response += data
-    print("")
-    return response
-
-
-# Replace <api_key> with your actual API key, ensuring it is a string.
-api_key = "tR4M-mL3mr_dNsH6ik19iF7AbMt4YcupQTk3JhsowVU"
-messages = []
-# Run the event loop
-# For Python 3.7 and newer
-message = ProtocolMessage(role="user", content="你好")
-messages.append(message)
-response = asyncio.run(get_responses(api_key, messages))
-response = ProtocolMessage(role="bot", content=response)
-messages.append(response)
-message = ProtocolMessage(role="user", content="你可以帮我翻译一下下面的句子吗？")
-messages.append(message)
-response = asyncio.run(get_responses(api_key, messages))
-response = ProtocolMessage(role="bot", content=response)
-messages.append(response)
-message = ProtocolMessage(
-    role="user", content="碳是生物体（动物植物的组成物质）和矿物燃料（天然气，石油和煤）的主要组成部分。"
+import pandas as pd
+import numpy as np
+import re
+from bot import Conversation
+from rich.console import Console
+from rich.markdown import Markdown
+from rich.progress import track
+from prompt import (
+    Chinese_prompt,
+    English_prompt,
+    Chinese_question_template,
+    English_question_template,
 )
-messages.append(message)
-asyncio.run(get_responses(api_key, messages))
+import os
+
+api_key = os.environ.get("API_KEY")
+
+# 读取数据
+data = pd.read_excel("data/data_cn_lc.xlsx")
+
+# 提问
+LLM = "ChatGPT"
+
+data["rank_" + LLM] = ["-"] * len(data)
+data.to_excel("data/data_cn_lc.xlsx", index=False)
+
+conversation = Conversation(api_key, LLM, Chinese_prompt)
+
+console = Console()
+
+success = 0
+
+while success == 0:
+    success = 1
+    for i in track(range(0, len(data))):
+        if data.loc[i, "rank_" + LLM] != "-":
+            continue
+        success = 0
+        if i % 20 == 0:
+            data.to_excel("data/data_cn_lc.xlsx", index=False)
+            conversation = Conversation(api_key, LLM, Chinese_prompt)
+        try:
+            result = conversation.chat(Chinese_question_template(data.iloc[i, :]))
+        except Exception:
+            console.print_exception(show_locals=True)
+            continue
+        index = max(result.find(":"), result.find("："))
+        rank = result[index + 1 : index + 3]
+        rank = rank.replace("\n", "")
+        if rank == "":
+            rank = "-"
+        if rank not in [
+            "A+",
+            "A",
+            "A-",
+            "B+",
+            "B",
+            "B-",
+            "C+",
+            "C",
+            "C-",
+            "D+",
+            "D",
+            "D-",
+            "-",
+        ]:
+            rank = "-"
+        data.loc[i, "rank_" + LLM] = rank
+        markdown = Markdown(result)
+        console.print(markdown)
+        console.print(rank, style="bold green")
+
+# 保存结果
+
+data.to_excel("data/data_cn_lc.xlsx", index=False)
+console.print("Done!", style="bold blue")

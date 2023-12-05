@@ -62,13 +62,3 @@ def English_question_template(data):
         data["SC_SCC"],
     )
     return question
-
-
-# 读取数据
-data = pd.read_excel("data/data_cn_lc.xlsx")
-
-# 提问
-conversation = Conversation(api_key, "Claude-instant", English_prompt)
-for i in range(0, 10):
-    result = conversation.chat(English_question_template(data.iloc[i, :]))
-    print(result)
