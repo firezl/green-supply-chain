@@ -19,7 +19,7 @@ class Conversation(object):
         async def get_responses(api_key, messages):
             response = ""
             async for partial in get_bot_response(
-                messages=messages, bot_name="ChatGPT", api_key=api_key
+                messages=messages, bot_name=self.bot_name, api_key=api_key
             ):
                 data = partial.text
                 response += data
@@ -40,7 +40,10 @@ class Conversation(object):
 
 
 if __name__ == "__main__":
-    conversation = Conversation("", "ChatGPT", "")
+    import os
+
+    api_key = os.environ.get("API_KEY")
+    conversation = Conversation(api_key, "GPT-4", "")
     while True:
         message = input("You: ")
         print(conversation.chat(message))

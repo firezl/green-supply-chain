@@ -2,10 +2,11 @@ import pandas as pd
 import numpy as np
 from bot import Conversation
 from vars import meaning_dict
+import os
 
 # Replace <api_key> with your actual API key, ensuring it is a string.
 
-api_key = "tR4M-mL3mr_dNsH6ik19iF7AbMt4YcupQTk3JhsowVU"
+api_key = os.environ.get("API_KEY")
 
 Chinese_prompt = "你现在是一个ESG分析师，你需要对一家公司在ESG中环境方面的表现进行评估。我将会给你一些关于这家公司在绿色供应链和碳中和方面的信息。\
     你需要根据这些信息，给出[A+,A,A-,B+,B,B-,C+,C,C-]中的一个评级。你的回答必须按照以下格式：公司名：评级"
@@ -67,7 +68,7 @@ def English_question_template(data):
 data = pd.read_excel("data/data_cn_lc.xlsx")
 
 # 提问
-conversation = Conversation(api_key, "gpt-3.5-turbo-instruct", English_prompt)
+conversation = Conversation(api_key, "Claude-instant", English_prompt)
 for i in range(0, 10):
     result = conversation.chat(English_question_template(data.iloc[i, :]))
     print(result)
