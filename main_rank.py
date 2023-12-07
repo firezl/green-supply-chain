@@ -5,7 +5,7 @@ from bot import Conversation
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.progress import track
-from prompt import (
+from prompt_rank import (
     Chinese_prompt,
     English_prompt,
     Chinese_question_template,
@@ -19,9 +19,9 @@ api_key = os.environ.get("API_KEY")
 data = pd.read_excel("data/data_cn_lc.xlsx")
 
 # 提问
-LLM = "ChatGPT"
-
-data["rank_" + LLM] = ["-"] * len(data)
+LLM = "Web-Search"
+iteration = "0"
+data["rank_" + LLM + iteration] = ["-"] * len(data)
 data.to_excel("data/data_cn_lc.xlsx", index=False)
 
 conversation = Conversation(api_key, LLM, Chinese_prompt)
@@ -33,10 +33,10 @@ success = 0
 while success == 0:
     success = 1
     for i in track(range(0, len(data))):
-        if data.loc[i, "rank_" + LLM] != "-":
+        if data.loc[i, "rank_" + LLM + iteration] != "-":
             continue
         success = 0
-        if i % 20 == 0:
+        if i % 5 == 0:
             data.to_excel("data/data_cn_lc.xlsx", index=False)
             conversation = Conversation(api_key, LLM, Chinese_prompt)
         try:
@@ -65,7 +65,7 @@ while success == 0:
             "-",
         ]:
             rank = "-"
-        data.loc[i, "rank_" + LLM] = rank
+        data.loc[i, "rank_" + LLM + iteration] = rank
         markdown = Markdown(result)
         console.print(markdown)
         console.print(rank, style="bold green")

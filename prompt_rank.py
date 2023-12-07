@@ -9,7 +9,7 @@ import os
 api_key = os.environ.get("API_KEY")
 
 Chinese_prompt = "你现在是一个ESG分析师，你需要对一家公司在ESG中环境方面的表现进行评估。我将会给你一些关于这家公司在绿色供应链和碳中和方面的信息。\
-    你需要根据这些信息，给出[A+,A,A-,B+,B,B-,C+,C,C-]中的一个评级。你的回答必须按照以下格式：公司名：评级"
+    你需要根据这些信息，给出[A+,A,A-,B+,B,B-,C+,C,C-]中的一个评级。你的回答必须按照以下格式：[公司名]：[评级]"
 English_prompt = "You are an ESG analyst, and you need to evaluate the company's performance in ESG environment. \
     I will give you some information about the company's performance in green supply chain and carbon neutrality.\
     You need to give a rating of [A+,A,A-,B+,B,B-,C+,C,C-] based on this information. Your answer must be in the following format: Company name: rating"
