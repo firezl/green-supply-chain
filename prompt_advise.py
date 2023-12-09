@@ -20,11 +20,20 @@ Chinese_prompt = "你现在是一个绿色供应链管理者,你需要根据公�
     范围1+2 目标设定; \
     范围1+2 目标绩效; \
     范围1+2 自身减排行动; \
-    你的回答需要按照下面的格式:[方面]: [是否已经实施], [如果没有实施], [建议实施的原因]。\
-    并且在最后你需要总结你提出的所有建议。"
-English_prompt = "You are an ESG analyst, and you need to evaluate the company's performance in ESG environment. \
-    I will give you some information about the company's performance in green supply chain and carbon neutrality.\
-    You need to give a rating of [A+,A,A-,B+,B,B-,C+,C,C-] based on this information. Your answer must be in the following format: Company name: rating"
+    你的回答需要按照下面的格式:[方面]: [是否已经实施], 如果没有实施, [建议措施]。"
+English_prompt = "You are a green supply chain manager, and you need to point out which aspects of the company need to be improved based on the company's performance in green supply chain. Your advice will include the following aspects: \
+    Supply chain (scope 3) policy declaration; \
+    Supply chain (scope 3) calculation and disclosure; \
+    Supply chain (scope 3) target setting; \
+    Supply chain (scope 3) target setting; \
+    Supply chain (scope 3) target performance; \
+    Supply chain (scope 3) supplier enterprise independently carry out carbon management; \
+    Scope 1+2 policy declaration; \
+    Scope 1+2 calculation and disclosure; \
+    Scope 1+2 target setting; \
+    Scope 1+2 target performance; \
+    Scope 1+2 self-reduction action; \
+    Your answer must be in the following format: [Aspect]: [Whether it has been implemented], if not, [suggested measures]."
 
 
 def Chinese_question_template(data):

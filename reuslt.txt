@@ -1,0 +1,41 @@
+ OLS Regression Results
+==============================================================================
+Dep. Variable:            Environment   R-squared:                       0.421
+Model:                            OLS   Adj. R-squared:                  0.333
+Method:                 Least Squares   F-statistic:                     4.774
+Date:                Sat, 09 Dec 2023   Prob (F-statistic):           1.68e-06
+Time:                        21:30:01   Log-Likelihood:                -214.02
+No. Observations:                 107   AIC:                             458.0
+Df Residuals:                      92   BIC:                             498.1
+Df Model:                          14
+Covariance Type:            nonrobust
+====================================================================================
+                       coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Intercept            0.4354      1.640      0.265      0.791      -2.823       3.694
+Company_industry     0.0743      0.037      1.993      0.049       0.000       0.148
+CITI                 0.0752      0.069      1.090      0.279      -0.062       0.212
+CITI_all_rank        0.0077      0.003      2.261      0.026       0.001       0.014
+CITI_trade_rank     -0.0539      0.017     -3.148      0.002      -0.088      -0.020
+CATI                -0.0222      0.080     -0.278      0.782      -0.181       0.136
+CATI_all_rank       -0.0051      0.002     -2.260      0.026      -0.010      -0.001
+CATI_trade_rank      0.0579      0.013      4.572      0.000       0.033       0.083
+CEmissReduce         0.0475      0.125      0.381      0.704      -0.200       0.295
+CEmission            0.2748      0.101      2.708      0.008       0.073       0.476
+SC_CC              -43.1227     46.573     -0.926      0.357    -135.621      49.375
+SC_PC              -43.1485     46.572     -0.926      0.357    -135.645      49.348
+SC_CCHHI            -0.0259      0.036     -0.718      0.475      -0.097       0.046
+SC_PCHHI             0.0606      0.080      0.753      0.454      -0.099       0.220
+SC_SCC              86.2765     93.141      0.926      0.357     -98.709     271.262
+==============================================================================
+Omnibus:                       13.187   Durbin-Watson:                   2.084
+Prob(Omnibus):                  0.001   Jarque-Bera (JB):               14.050
+Skew:                           0.820   Prob(JB):                     0.000889
+Kurtosis:                       3.680   Cond. No.                     5.78e+05
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 5.78e+05. This might indicate that there are
+strong multicollinearity or other numerical problems.
+test accuracy:  0.16666666666666666
