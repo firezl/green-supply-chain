@@ -123,7 +123,7 @@ print(results.summary())
 
 y_test, X_test = patsy.dmatrices(
     "Environment ~ Company_industry + CITI + CITI_all_rank + CITI_trade_rank + CATI + CATI_all_rank + CATI_trade_rank + CEmissReduce + CEmission + SC_CC + SC_PC + SC_CCHHI + SC_PCHHI + SC_SCC",
-    data=test,
+    data=data,
     return_type="dataframe",
 )
 

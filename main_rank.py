@@ -19,10 +19,10 @@ api_key = os.environ.get("API_KEY")
 data = pd.read_excel("data/data_cn_lc.xlsx")
 
 # 提问
-LLM = "Web-Search"
+LLM = "ChatGPT"
 iteration = "0"
 data["rank_" + LLM + iteration] = ["-"] * len(data)
-data.to_excel("data/data_cn_lc.xlsx", index=False)
+# data.to_excel("data/data_cn_lc.xlsx", index=False)
 
 conversation = Conversation(api_key, LLM, Chinese_prompt)
 
@@ -36,8 +36,8 @@ while success == 0:
         if data.loc[i, "rank_" + LLM + iteration] != "-":
             continue
         success = 0
-        if i % 5 == 0:
-            data.to_excel("data/data_cn_lc.xlsx", index=False)
+        if i % 1 == 0:
+            # data.to_excel("data/data_cn_lc.xlsx", index=False)
             conversation = Conversation(api_key, LLM, Chinese_prompt)
         try:
             result = conversation.chat(Chinese_question_template(data.iloc[i, :]))
@@ -72,5 +72,5 @@ while success == 0:
 
 # 保存结果
 
-data.to_excel("data/data_cn_lc.xlsx", index=False)
+# data.to_excel("data/data_cn_lc.xlsx", index=False)
 console.print("Done!", style="bold blue")
