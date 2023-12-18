@@ -42,7 +42,7 @@ if __name__ == "__main__":
     import os
 
     api_key = os.environ.get("API_KEY")
-    conversation = Conversation(api_key, "GPT-4", "")
+    conversation = Conversation(api_key, "Web-Search", "")
     while True:
         message = input("You: ")
         print(conversation.chat(message))
