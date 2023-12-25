@@ -1,41 +1,41 @@
- OLS Regression Results
+OLS Regression Results
 ==============================================================================
-Dep. Variable:            Environment   R-squared:                       0.421
-Model:                            OLS   Adj. R-squared:                  0.333
-Method:                 Least Squares   F-statistic:                     4.774
-Date:                Sat, 09 Dec 2023   Prob (F-statistic):           1.68e-06
-Time:                        21:30:01   Log-Likelihood:                -214.02
-No. Observations:                 107   AIC:                             458.0
-Df Residuals:                      92   BIC:                             498.1
+Dep. Variable:               ESG_ccxi   R-squared:                       0.575
+Model:                            OLS   Adj. R-squared:                  0.511
+Method:                 Least Squares   F-statistic:                     8.898
+Date:                Sun, 24 Dec 2023   Prob (F-statistic):           6.41e-12
+Time:                        20:48:45   Log-Likelihood:                -214.73
+No. Observations:                 107   AIC:                             459.5
+Df Residuals:                      92   BIC:                             499.6
 Df Model:                          14
 Covariance Type:            nonrobust
 ====================================================================================
                        coef    std err          t      P>|t|      [0.025      0.975]
 ------------------------------------------------------------------------------------
-Intercept            0.4354      1.640      0.265      0.791      -2.823       3.694
-Company_industry     0.0743      0.037      1.993      0.049       0.000       0.148
-CITI                 0.0752      0.069      1.090      0.279      -0.062       0.212
-CITI_all_rank        0.0077      0.003      2.261      0.026       0.001       0.014
-CITI_trade_rank     -0.0539      0.017     -3.148      0.002      -0.088      -0.020
-CATI                -0.0222      0.080     -0.278      0.782      -0.181       0.136
-CATI_all_rank       -0.0051      0.002     -2.260      0.026      -0.010      -0.001
-CATI_trade_rank      0.0579      0.013      4.572      0.000       0.033       0.083
-CEmissReduce         0.0475      0.125      0.381      0.704      -0.200       0.295
-CEmission            0.2748      0.101      2.708      0.008       0.073       0.476
-SC_CC              -43.1227     46.573     -0.926      0.357    -135.621      49.375
-SC_PC              -43.1485     46.572     -0.926      0.357    -135.645      49.348
-SC_CCHHI            -0.0259      0.036     -0.718      0.475      -0.097       0.046
-SC_PCHHI             0.0606      0.080      0.753      0.454      -0.099       0.220
-SC_SCC              86.2765     93.141      0.926      0.357     -98.709     271.262
+Intercept            3.8543      1.731      2.226      0.028       0.416       7.293
+Company_industry     0.0653      0.034      1.948      0.054      -0.001       0.132
+CITI                 0.1494      0.087      1.727      0.088      -0.022       0.321
+CITI_all_rank        0.0059      0.004      1.549      0.125      -0.002       0.014
+CITI_trade_rank     -0.0224      0.023     -0.962      0.339      -0.069       0.024
+CATI                -0.1440      0.066     -2.194      0.031      -0.274      -0.014
+CATI_all_rank       -0.0058      0.002     -2.787      0.006      -0.010      -0.002
+CATI_trade_rank      0.0253      0.017      1.478      0.143      -0.009       0.059
+CEmissReduce         0.2440      0.122      2.002      0.048       0.002       0.486
+CEmission            0.4771      0.115      4.150      0.000       0.249       0.705
+SC_CC             -122.4155     45.443     -2.694      0.008    -212.669     -32.162
+SC_PC             -122.3838     45.446     -2.693      0.008    -212.644     -32.123
+SC_CCHHI            -0.0401      0.058     -0.688      0.493      -0.156       0.076
+SC_PCHHI            -0.0925      0.114     -0.808      0.421      -0.320       0.135
+SC_SCC             244.8428     90.886      2.694      0.008      64.335     425.351
 ==============================================================================
-Omnibus:                       13.187   Durbin-Watson:                   2.084
-Prob(Omnibus):                  0.001   Jarque-Bera (JB):               14.050
-Skew:                           0.820   Prob(JB):                     0.000889
-Kurtosis:                       3.680   Cond. No.                     5.78e+05
+Omnibus:                        2.528   Durbin-Watson:                   1.970
+Prob(Omnibus):                  0.283   Jarque-Bera (JB):                2.223
+Skew:                           0.248   Prob(JB):                        0.329
+Kurtosis:                       2.497   Cond. No.                     5.65e+05
 ==============================================================================
 
 Notes:
 [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-[2] The condition number is large, 5.78e+05. This might indicate that there are
+[2] The condition number is large, 5.65e+05. This might indicate that there are
 strong multicollinearity or other numerical problems.
-test accuracy:  0.16666666666666666
+test accuracy:  0.17209302325581396

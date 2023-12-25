@@ -19,8 +19,8 @@ api_key = os.environ.get("API_KEY")
 data = pd.read_excel("data/data_cn_lc.xlsx")
 
 # 提问
-LLM = "GPT-4"
-iteration = "0"
+LLM = "Web-Search"
+iteration = "1"
 data["rank_" + LLM + iteration] = ["-"] * len(data)
 # data.to_excel("data/data_cn_lc.xlsx", index=False)
 

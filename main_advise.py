@@ -22,15 +22,16 @@ data = pd.read_excel("data/data_cn_lc.xlsx")
 LLM = "GPT-4"
 
 console = Console()
-
+wrong_index = np.load("./wrong_index.npy")
 for i in range(len(data)):
+    if i not in wrong_index:
+        continue
     conversation = Conversation(api_key, LLM, Chinese_prompt)
     result = ""
     while result == "":
         try:
             result = conversation.chat(Chinese_question_template(data.iloc[i, :]))
         except:
-            console.print("Error!")
             continue
     markdown = Markdown(result)
     console.print(markdown)

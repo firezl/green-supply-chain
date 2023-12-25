@@ -8,7 +8,7 @@ data = pd.read_excel("data/data_cn_lc.xlsx")
 
 # 数据处理
 score = {
-    "C": 0,
+    "na": 0,
     "B": 1,
     "BB": 2,
     "BBB-": 3,
@@ -17,9 +17,10 @@ score = {
     "A-": 6,
     "A": 7,
     "AA-": 8,
-    "A+": 9,
+    "AA": 9,
+    "A+": 10,
 }
-data["Environment"] = data["Environment"].apply(lambda x: score[x])
+data["ESG_ccxi"] = data["ESG_ccxi"].fillna("na").apply(lambda x: score[x])
 
 
 # def re_histogram(esg):
@@ -60,49 +61,45 @@ ci_score = zip(
 )
 ci_score = dict(ci_score)
 data["Company_industry"] = data["Company_industry"].apply(lambda x: ci_score[x])
-data["CEmissReduce"] = data["CEmissReduce"].apply(
-    lambda x: 0 if np.isnan(x) else np.log10(x + 1)
-)
-data["CEmission"] = data["CEmission"].apply(
-    lambda x: 0 if np.isnan(x) else np.log10(x + 1)
-)
-data["SC_CC"] = data["SC_CC"].apply(lambda x: 0 if np.isnan(x) else x)
-data["SC_PC"] = data["SC_PC"].apply(lambda x: 0 if np.isnan(x) else x)
-data["SC_CCHHI"] = data["SC_CCHHI"].apply(lambda x: 0 if np.isnan(x) else x)
-data["SC_PCHHI"] = data["SC_PCHHI"].apply(lambda x: 0 if np.isnan(x) else x)
-data["SC_SCC"] = data["SC_SCC"].apply(lambda x: 0 if np.isnan(x) else x)
+data["CEmissReduce"] = data["CEmissReduce"].fillna(0).apply(lambda x: np.log10(x + 1))
+data["CEmission"] = data["CEmission"].fillna(0).apply(lambda x: np.log10(x + 1))
+data["SC_CC"] = data["SC_CC"].fillna(0)
+data["SC_PC"] = data["SC_PC"].fillna(0)
+data["SC_CCHHI"] = data["SC_CCHHI"].fillna(0)
+data["SC_PCHHI"] = data["SC_PCHHI"].fillna(0)
+data["SC_SCC"] = data["SC_SCC"].fillna(0)
 
 # check
-if np.isnan(data["SC_CC"]).sum() != 0:
+if pd.isnull(data["SC_CC"]).sum() != 0:
     print("SC_CC has nan")
-if np.isnan(data["SC_PC"]).sum() != 0:
+if pd.isnull(data["SC_PC"]).sum() != 0:
     print("SC_PC has nan")
-if np.isnan(data["SC_CCHHI"]).sum() != 0:
+if pd.isnull(data["SC_CCHHI"]).sum() != 0:
     print("SC_CCHHI has nan")
-if np.isnan(data["SC_PCHHI"]).sum() != 0:
+if pd.isnull(data["SC_PCHHI"]).sum() != 0:
     print("SC_PCHHI has nan")
-if np.isnan(data["SC_SCC"]).sum() != 0:
+if pd.isnull(data["SC_SCC"]).sum() != 0:
     print("SC_SCC has nan")
 
-if np.isnan(data["Environment"]).sum() != 0:
+if pd.isnull(data["Environment"]).sum() != 0:
     print("Environment has nan")
-if np.isnan(data["Company_industry"]).sum() != 0:
+if pd.isnull(data["Company_industry"]).sum() != 0:
     print("Company_industry has nan")
-if np.isnan(data["CITI"]).sum() != 0:
+if pd.isnull(data["CITI"]).sum() != 0:
     print("CITI has nan")
-if np.isnan(data["CITI_all_rank"]).sum() != 0:
+if pd.isnull(data["CITI_all_rank"]).sum() != 0:
     print("CITI_all_rank has nan")
-if np.isnan(data["CITI_trade_rank"]).sum() != 0:
+if pd.isnull(data["CITI_trade_rank"]).sum() != 0:
     print("CITI_trade_rank has nan")
-if np.isnan(data["CATI"]).sum() != 0:
+if pd.isnull(data["CATI"]).sum() != 0:
     print("CATI has nan")
-if np.isnan(data["CATI_all_rank"]).sum() != 0:
+if pd.isnull(data["CATI_all_rank"]).sum() != 0:
     print("CATI_all_rank has nan")
-if np.isnan(data["CATI_trade_rank"]).sum() != 0:
+if pd.isnull(data["CATI_trade_rank"]).sum() != 0:
     print("CATI_trade_rank has nan")
-if np.isnan(data["CEmissReduce"]).sum() != 0:
+if pd.isnull(data["CEmissReduce"]).sum() != 0:
     print("CEmissReduce has nan")
-if np.isnan(data["CEmission"]).sum() != 0:
+if pd.isnull(data["CEmission"]).sum() != 0:
     print("CEmission has nan")
 
 index = np.random.choice(range(len(data)), size=len(data), replace=False)
@@ -112,7 +109,7 @@ train = data.iloc[train_index]
 test = data.iloc[test_index]
 
 y, X = patsy.dmatrices(
-    "Environment ~ Company_industry + CITI + CITI_all_rank + CITI_trade_rank + CATI + CATI_all_rank + CATI_trade_rank + CEmissReduce + CEmission + SC_CC + SC_PC + SC_CCHHI + SC_PCHHI + SC_SCC",
+    "ESG_ccxi ~ Company_industry + CITI + CITI_all_rank + CITI_trade_rank + CATI + CATI_all_rank + CATI_trade_rank + CEmissReduce + CEmission + SC_CC + SC_PC + SC_CCHHI + SC_PCHHI + SC_SCC",
     data=train,
     return_type="dataframe",
 )
@@ -122,12 +119,12 @@ results = model.fit()
 print(results.summary())
 
 y_test, X_test = patsy.dmatrices(
-    "Environment ~ Company_industry + CITI + CITI_all_rank + CITI_trade_rank + CATI + CATI_all_rank + CATI_trade_rank + CEmissReduce + CEmission + SC_CC + SC_PC + SC_CCHHI + SC_PCHHI + SC_SCC",
-    data=data,
+    "ESG_ccxi ~ Company_industry + CITI + CITI_all_rank + CITI_trade_rank + CATI + CATI_all_rank + CATI_trade_rank + CEmissReduce + CEmission + SC_CC + SC_PC + SC_CCHHI + SC_PCHHI + SC_SCC",
+    data=test,
     return_type="dataframe",
 )
 
 y_pred = results.predict(X_test)
 y_pred = np.round(y_pred)
-y_test = y_test["Environment"].values
+y_test = y_test["ESG_ccxi"].values
 print("test accuracy: ", np.sum(y_pred == y_test) / len(y_test))
