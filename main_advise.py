@@ -19,7 +19,14 @@ api_key = os.environ.get("API_KEY")
 data = pd.read_excel("data/data_cn_lc.xlsx")
 
 # 提问
-LLM = "GPT-4"
+LLM = "GPT-4o-Mini"
+
+save_path = "./result"
+
+try:
+    os.makedirs(save_path)
+except:
+    pass
 
 console = Console()
 wrong_index = np.load("./wrong_index.npy")
@@ -33,6 +40,12 @@ for i in range(len(data)):
             result = conversation.chat(Chinese_question_template(data.iloc[i, :]))
         except:
             continue
+
+    with open(f"{save_path}/{i}.md", "w") as f:
+        f.write(Chinese_question_template(data.iloc[i, :]))
+        f.write("\n")
+        f.write(result)
+
     markdown = Markdown(result)
     console.print(markdown)
     console.print("")

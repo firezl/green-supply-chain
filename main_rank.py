@@ -19,7 +19,7 @@ api_key = os.environ.get("API_KEY")
 data = pd.read_excel("data/data_cn_lc.xlsx")
 
 # 提问
-LLM = "Web-Search"
+LLM = "ChatGPT"
 iteration = "1"
 data["rank_" + LLM + iteration] = ["-"] * len(data)
 # data.to_excel("data/data_cn_lc.xlsx", index=False)
